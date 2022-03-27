@@ -29,7 +29,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - bazel =4.2.1
+    - bazel #=4.2.1
     - cython >=0.29
     - curl
     - make
@@ -38,6 +38,8 @@ requirements:
 
 outputs:
   - name: ray-all
+    build:
+      skip: True
     requirements:
       host:
         - python
@@ -62,7 +64,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - bazel =4.2.1
+        - bazel #=4.2.1
         - sysroot_linux-64 2.17  # [linux64]
         - curl
         - cython >=0.29.15
@@ -138,6 +140,7 @@ outputs:
 
   - name: ray-dashboard
     build:
+      skip: True
       script:
         - cd python/ray/dashboard/client
         - npm install
@@ -163,6 +166,8 @@ outputs:
         - python -c "import ray; ray.init(include_dashboard=True)"
 
   - name: ray-k8s
+    build:
+      skip: True
     requirements:
       host:
         - python
@@ -177,6 +182,8 @@ outputs:
         - ray
 
   - name: ray-data
+    build:
+      skip: True
     requirements:
       host:
         - python
@@ -192,6 +199,7 @@ outputs:
 
   - name: ray-rllib
     build:
+      skip: True
       entry_points:
         - rllib = ray.rllib.scripts:cli
     requirements:
@@ -219,6 +227,7 @@ outputs:
 
   - name: ray-serve
     build:
+      skip: True
       entry_points:
         - serve = ray.serve.scripts:cli
     requirements:
@@ -237,6 +246,7 @@ outputs:
 
   - name: ray-tune
     build:
+      skip: True
       entry_points:
         - tune = ray.tune.scripts:cli
     requirements:
